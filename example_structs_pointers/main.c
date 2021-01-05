@@ -44,20 +44,23 @@ int main(int argc, char **argv)
 	printf("\n mon_s2.b: %p", &mon_s_2.b);
 	printf("\n mon_s2.c: %p", &mon_s_2.c);
 	
-	//
+	//Second case:
 	
+	S *pm; // Var pointer, not init
+	// Interdit pm -> a = 10; pm-> b; (*pm).a = 10;
 	
+	//Init de pm:
 	
+	// Option 1: initialiser avec une address existent
 	
+	 //pm = &mon_s; // initialisation pointer: address de Mon_s.
+	 
+	 //Option 2: demander de la memoire
+	 
+	 pm = (S*) malloc(sizeof(S));
 	
-	
-	
-	
-	//S allMyS[10000000];
-	
-	
-	
-	
+	pm -> a = 20;
+	printf("Valeur a second pointer %d : ", pm->a);
 	
 	
 	
