@@ -4,9 +4,19 @@
 //remplit monTab de n valeurs aleatoires
 
 void  initRandomTab(int *monTab, int n){
-	srand(0);
+	//Seed
+	srand(4);
 	for(int i = 0; i < n; i++ ){
 			monTab[i] = rand() % 10;
+		}
+} 
+
+void  initRandomTabPointer(int *pointerToTab, int n){
+	srand(0);
+	for(int i = 0; i < n; i++ ){
+			*pointerToTab = rand() % 10;
+			 pointerToTab = pointerToTab + 1;
+			  
 		}
 } 
 
@@ -112,7 +122,8 @@ int main(int argc, char **argv)
 	//Demane de memoire
 	prandom = (int*)malloc(sizeArray*sizeof(int));
 	//Initialisation
-	initRandomTab(prandom, sizeArray);
+	//initRandomTab(prandom, sizeArray);
+	initRandomTabPointer(prandom, sizeArray);
 	
 	printTable(prandom, sizeArray);
 	
