@@ -24,7 +24,7 @@ void minMaxMoyenne(
 		sum = sum + n[i];
 	}
 	
-	*pmoy = sum / 5;
+	*pmoy = sum / 5; //TODO: create a constant
 	
 	printf("Min %d", *pmin);
 	printf("Max %d", *pmax);
