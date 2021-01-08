@@ -11,6 +11,41 @@ void  initRandomTab(int *monTab, int n){
 		}
 } 
 
+ //renvoie 1 si val dans monTab, 0 sinon
+int rechercheIterative(int val, int *monTab, int n){
+  
+	for(int i = 0; i<n;i++){
+		//if(monTab[i] == val){
+		if(*(monTab + i) == val){
+			return 1;
+			}
+	}
+	// fin
+	return 0;
+	
+}
+
+
+ //renvoie 1 si val dans monTab, 0 sinon
+int rechercheRecursive(int val, int *monTab, int n){
+  
+	if( n >= 0 ){
+		//if(monTab[i] == val){
+		if(*(monTab + n) == val){
+			return 1;
+		}
+		else{
+				return rechercheRecursive(val, monTab, n - 1);
+			}
+	}else{
+	// stop condition
+	   return 0;
+	}
+	
+}
+
+
+
 void  initRandomTabPointer(int *pointerToTab, int n){
 	srand(0);
 	for(int i = 0; i < n; i++ ){
@@ -147,6 +182,41 @@ int main(int argc, char **argv)
 	
 	minMaxMoyenne(prandom,  sizeArray, &resultMin,  &resultMax, &resultMoy);
 	printf("Min %d Max %d Moy %f", resultMin, resultMax, resultMoy);
+	
+	//Exo 6 
+	
+	int valeur = 8;
+	int found = rechercheIterative(valeur, prandom, sizeArray);
+	
+	printf("\n\nis value %d on array?: %d \n", valeur, found);
+	valeur = 5;
+	
+	found = rechercheIterative(valeur, prandom, sizeArray);
+	
+	printf("\n\nis value %d on array?: %d \n", valeur, found);
+	
+	valeur = 3;
+	found = rechercheIterative(valeur, prandom, sizeArray);
+	
+	printf("\n\nis value %d on array?: %d \n", valeur, found);
+	
+	//Now with recursive
+	printf("\nRecursive\n");
+	valeur = 8;
+	found = rechercheRecursive(valeur, prandom, sizeArray-1);
+	
+	printf("\n\nis value %d on array?: %d \n", valeur, found);
+	valeur = 5;
+	
+	found = rechercheRecursive(valeur, prandom, sizeArray-1);
+	
+	printf("\n\nis value %d on array?: %d \n", valeur, found);
+	
+	valeur = 3;
+	found = rechercheRecursive(valeur, prandom, sizeArray-1);
+	
+	printf("\n\nis value %d on array?: %d \n", valeur, found);
+	
 	
 	printf("\nEnd");
 	return 0;
