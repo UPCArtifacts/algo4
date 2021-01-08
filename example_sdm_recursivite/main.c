@@ -1,5 +1,14 @@
 #include <stdio.h>
+#include <stdlib.h>
 
+//remplit monTab de n valeurs aleatoires
+
+void  initRandomTab(int *monTab, int n){
+	srand(0);
+	for(int i = 0; i < n; i++ ){
+			monTab[i] = rand() % 10;
+		}
+} 
 
 
 void minMaxMoyenne(
@@ -28,6 +37,48 @@ void minMaxMoyenne(
 	*pmoy = sum / sizeOfArray; 
 }
 
+void printTable(int *p, int sizeArray){
+		//printf("Checking initialization\n");
+		for(int i = 0; i < sizeArray; i++ ){
+		printf("Value at place i= %d is : %d\n", i , *(p+i));
+		
+	}
+}
+
+void exo3(){
+	int sizeArray, * p;
+	int resultMax = 0;
+	int resultMin = 0;
+	float resultMoy = 0.0;
+
+	printf("\nWrite the size of the array:\n");
+    scanf("%d", &sizeArray);
+	printf("Value written %d",sizeArray );
+    //P has the address to the memory where we have sizeArray X sizeof(4) bytes
+	p = (int*)malloc(sizeArray*sizeof(int));
+	
+	//Auxiliary pointer
+	int *pi ;
+	//Copy of addresses
+	pi = p;
+	
+	//Init du tableau dynamique
+	for(int i = 0; i < sizeArray; i++ ){
+		printf("\nWrite  value at place i= %d\n",i);
+		scanf("%d", pi);
+		pi++;
+	}
+	
+	
+	//Reset values
+	resultMax = 0;
+	resultMin = 0;
+	resultMoy = 0.0;
+	
+	minMaxMoyenne(p,  sizeArray, &resultMin,  &resultMax, &resultMoy);
+	printf("Min %d Max %d Moy %f", resultMin, resultMax, resultMoy);
+	
+}
 
 int main(int argc, char **argv)
 {
@@ -50,37 +101,27 @@ int main(int argc, char **argv)
 	printf("Min %d Max %d Moy %f", resultMin, resultMax, resultMoy);
 	
 	// Exo 3:
-	int sizeArray, * p;
+	//exo3();
+	
+	
+	//Exo 4:
+	int sizeArray;
 	printf("\nWrite the size of the array:\n");
-    scanf("%d", &sizeArray);
-	printf("Value written %d",sizeArray );
-    //P has the address to the memory where we have sizeArray X sizeof(4) bytes
-	p = (int*)malloc(sizeArray*sizeof(int));
+	scanf("%d", &sizeArray);
+	int * prandom;
+	//Demane de memoire
+	prandom = (int*)malloc(sizeArray*sizeof(int));
+	//Initialisation
+	initRandomTab(prandom, sizeArray);
 	
-	//Auxiliary pointer
-	int *pi ;
-	//Copy of addresses
-	pi = p;
-	
-	//Init du tableau dynamique
-	for(int i = 0; i < sizeArray; i++ ){
-		printf("\nWrite  value at place i= %d\n",i);
-		scanf("%d", pi);
-		pi++;
-	}
-	
-	printf("Checking initialization\n");
-	for(int i = 0; i < sizeArray; i++ ){
-		printf("Value at place i= %d is : %d\n", i , *(p+i));
-		
-	}
+	printTable(prandom, sizeArray);
 	
 	//Reset values
 	resultMax = 0;
 	resultMin = 0;
 	resultMoy = 0.0;
 	
-	minMaxMoyenne(p,  sizeArray, &resultMin,  &resultMax, &resultMoy);
+	minMaxMoyenne(prandom,  sizeArray, &resultMin,  &resultMax, &resultMoy);
 	printf("Min %d Max %d Moy %f", resultMin, resultMax, resultMoy);
 	
 	printf("\nEnd");
