@@ -45,6 +45,23 @@ int rechercheRecursive(int val, int *monTab, int n){
 }
 
 
+int rechercheIndexRecursive(int *monTab, int i, int sizeOfArray){
+  
+	if( i < sizeOfArray){
+		if(*(monTab + i) > 50){
+			return i;
+		}
+		else{
+				return rechercheRecursive(monTab, i+1, sizeOfArray);
+			}
+	}else{
+	// stop condition
+	   return 0;
+	}
+	
+}
+
+
 
 void  initRandomTabPointer(int *pointerToTab, int n){
 	srand(0);
@@ -217,7 +234,15 @@ int main(int argc, char **argv)
 	
 	printf("\n\nis value %d on array?: %d \n", valeur, found);
 	
+	print("\n---");
+	// Exo 7
+	printf("Last exo 7:");
+	//Tableau statique!!
+	int tableauStat[]  = {5,6,57,8,53}; 
+	sizeArray = 5; // TODO: improve, compute the size with a function.
+	int indexFirst = rechercheIndexRecursive(tableauStat, 0, sizeArray );
 	
+	printf("\nindex? %d \n", indexFirst);
 	printf("\nEnd");
 	return 0;
 }
