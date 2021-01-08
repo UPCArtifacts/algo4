@@ -47,12 +47,20 @@ void minMaxMoyenne(
 	*pmoy = sum / sizeOfArray; 
 }
 
+// Exo 5 : version iterative:
 void printTable(int *p, int sizeArray){
-		//printf("Checking initialization\n");
 		for(int i = 0; i < sizeArray; i++ ){
-		printf("Value at place i= %d is : %d\n", i , *(p+i));
+		   printf("Value at place i= %d is : %d\n", i , *(p+i));
 		
 	}
+}
+
+// Exo 5 : version recursive:
+void printTableRecursive(int *p, int currentElementIndex){
+		if(currentElementIndex >= 0){
+		   printTableRecursive(p, currentElementIndex - 1 );
+		   printf("'Recursive : Value at place i= %d is : %d\n", currentElementIndex , *(p+currentElementIndex));
+		}
 }
 
 void exo3(){
@@ -125,7 +133,12 @@ int main(int argc, char **argv)
 	//initRandomTab(prandom, sizeArray);
 	initRandomTabPointer(prandom, sizeArray);
 	
+	//
+	printf("Iterative Print");
 	printTable(prandom, sizeArray);
+	//
+	printf("Recursive Print");
+	printTableRecursive(prandom, sizeArray -1 );
 	
 	//Reset values
 	resultMax = 0;
