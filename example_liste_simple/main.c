@@ -94,6 +94,23 @@ LIST addLast(LIST listExistent, CELL * elementToAdd){
 	
 }
 
+
+LIST removeFirst(LIST listExistent){
+
+	if(listExistent == NULL){
+		return NULL;
+	}else{
+		LIST oldFirst = listExistent;
+		LIST newFirst =  listExistent->suiv;
+		
+		free(oldFirst);
+		
+		return newFirst;
+	}
+	
+}
+
+
 int infList(LIST listExistent){
    
 	if(listExistent != NULL){
@@ -162,6 +179,11 @@ int main(int argc, char **argv)
 	
 	int minval = infList(myList);
 	printf("\nMin val: %d\n", minval);
+	
+	// Exo 8:
+	printf("\nRemove first\n");
+	myList = removeFirst(myList);
+	printList(myList);
 	
 	return 0;
 }
