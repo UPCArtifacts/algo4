@@ -22,11 +22,11 @@ typedef struct _cell CELL;
 //	struct _cell * suiv;
 //} CELL;
 
-
+// 
 typedef CELL * LIST;
 
 // Exo 2 TD 2. Create cell
-CELL* createCell(int valueDeLaCellule){
+   CELL* createCell(int valueDeLaCellule){
 	
 	CELL* newCell;
 	newCell = (CELL*) malloc(sizeof(CELL));
@@ -45,7 +45,22 @@ CELL* createCell(int valueDeLaCellule){
 //...
 //}
 
+LIST addFirst(LIST listExistent, CELL * elementToAdd){
+	
+	elementToAdd->suiv = listExistent;
+	listExistent = elementToAdd;
+	return listExistent;
+	
+}
 
+void printList(LIST listToPrint){
+//recursive
+  if(listToPrint != NULL){
+	   printf("v: %d", listToPrint->valeur);
+	   printList(listToPrint->suiv);
+	  }	
+
+}
 
 int main(int argc, char **argv)
 {
@@ -55,10 +70,32 @@ int main(int argc, char **argv)
 	
 	int valueOfNewElement = 10;
 	CELL * createdCellDix = createCell(valueOfNewElement);
+	//Equivalent: LIST est la redeclaration de CELL * (Regardez le typedef)
+	//LIST createdCellDix = createCell(valueOfNewElement);
 	
 	printf("La valeur à l'interieur de la cellule est: %d", createdCellDix->valeur);
 	//equivalent:
 	//printf("La valeur à l'interieur de la cellule est: %d", (*createdCellDix).valeur);
+	
+	// Exo 3
+	LIST myList = NULL;
+
+	myList = addFirst(myList, createdCellDix);
+	
+	// Exo 5: 
+	printf("\nPrint list:\n");
+	
+	printList(myList);
+	
+	///Ajouter une nouvelle cellule
+	CELL * createdCellOnce = createCell(11);
+	myList = addFirst(myList, createdCellOnce);
+	
+	printf("\nPrint list updated:\n");
+	
+	printList(myList);
+	
+	
 	
 	return 0;
 }
