@@ -63,6 +63,25 @@ void printList(LIST listToPrint){
 
 }
 
+int countVal(LIST listExistent){
+	
+	if(listExistent == NULL){
+		return 0;
+	}
+	else{
+		return 1 + countVal(listExistent->suiv);
+		}
+	}
+	
+int countValIter(LIST listExistent){
+	int count = 0;
+	while(listExistent != NULL){
+			count = count + 1;
+			listExistent = listExistent->suiv;
+		}
+	return count;
+	}
+
 LIST addLast(LIST listExistent, CELL * elementToAdd){
 	
 	if(listExistent == NULL){
@@ -93,19 +112,22 @@ int main(int argc, char **argv)
 	// Exo 3
 	LIST myList = NULL;
 
+	printf("\nTaille list: %d\n", countVal(myList) );
+
 	myList = addFirst(myList, createdCellDix);
 	
 	// Exo 5: 
 	printf("\nPrint list:\n");
 	
 	printList(myList);
+	printf("\nTaille list: %d\n", countVal(myList) );
 	
 	///Ajouter une nouvelle cellule au debut
 	CELL * createdCellOnce = createCell(11);
 	myList = addFirst(myList, createdCellOnce);
 	
 	printf("\nPrint list updated with 11:\n");
-	
+	printf("\nTaille list: %d\n", countVal(myList) );
 	printList(myList);
 	
 	
@@ -115,6 +137,7 @@ int main(int argc, char **argv)
 	CELL * createdCellNeuf = createCell(9);
 	myList = addLast(myList, createdCellNeuf);
 	printList(myList);
+	printf("\nTaille list (iterative version): %d\n", countValIter(myList) );
 	
 	return 0;
 }
