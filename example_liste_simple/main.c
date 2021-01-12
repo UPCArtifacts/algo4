@@ -132,6 +132,26 @@ int infList(LIST listExistent){
 		}
 }
 
+LIST insertTrie(LIST listExistent, CELL * elementToAdd){
+
+	 if(listExistent == NULL){
+		 return elementToAdd;
+		 }
+	else{
+		if(elementToAdd->valeur > listExistent->valeur ){
+			//Pas a la bonne place 
+			 listExistent -> suiv = insertTrie(listExistent->suiv, elementToAdd);
+			 return listExistent;
+			}
+			else{
+			 //Place to insert
+				elementToAdd->suiv = listExistent;
+				listExistent = elementToAdd;
+				return listExistent;
+			}
+	}
+}
+
 int main(int argc, char **argv)
 {
 	printf("hello world TD 2 Liste Simple\n");
@@ -184,6 +204,21 @@ int main(int argc, char **argv)
 	printf("\nRemove first\n");
 	myList = removeFirst(myList);
 	printList(myList);
+	
+	
+	//Insert Trie:
+	LIST listTrie = NULL;
+	
+	CELL * createdCellTrois = createCell(3);
+	CELL * createdCellDeux = createCell(2);
+	CELL * createdCellCinq = createCell(5);
+	
+	listTrie = insertTrie(listTrie,createdCellTrois);
+	listTrie = insertTrie(listTrie,createdCellDeux);
+	listTrie = insertTrie(listTrie,createdCellCinq);
+	
+	printf("\nPrint trie: \n");
+	printList(listTrie);
 	
 	return 0;
 }
