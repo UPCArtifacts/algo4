@@ -32,6 +32,7 @@ typedef CELL * LIST;
 	newCell = (CELL*) malloc(sizeof(CELL));
 	//Affectation -init-
 	newCell->valeur = valueDeLaCellule;
+	newCell->suiv = NULL;
 	// return l addresse òu nous avons stocké la nouvelle cellule.
 	return newCell;
 }
@@ -62,6 +63,18 @@ void printList(LIST listToPrint){
 
 }
 
+LIST addLast(LIST listExistent, CELL * elementToAdd){
+	
+	if(listExistent == NULL){
+			return elementToAdd; 
+	}
+	else{
+		listExistent->suiv = addLast(listExistent->suiv, elementToAdd);
+		return listExistent;
+		}
+	
+}
+
 int main(int argc, char **argv)
 {
 	printf("hello world TD 2 Liste Simple\n");
@@ -87,15 +100,21 @@ int main(int argc, char **argv)
 	
 	printList(myList);
 	
-	///Ajouter une nouvelle cellule
+	///Ajouter une nouvelle cellule au debut
 	CELL * createdCellOnce = createCell(11);
 	myList = addFirst(myList, createdCellOnce);
 	
-	printf("\nPrint list updated:\n");
+	printf("\nPrint list updated with 11:\n");
 	
 	printList(myList);
 	
 	
+	// Exo 4: 
+		//Ajouter une nouvelle cellule a la fin
+	printf("\nPrint list updated 9:\n");
+	CELL * createdCellNeuf = createCell(9);
+	myList = addLast(myList, createdCellNeuf);
+	printList(myList);
 	
 	return 0;
 }
