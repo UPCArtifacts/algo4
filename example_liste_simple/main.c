@@ -152,6 +152,29 @@ LIST insertTrie(LIST listExistent, CELL * elementToAdd){
 	}
 }
 
+LIST sortList(LIST listExistent){
+		
+	LIST resultatTrie = NULL;
+	LIST temp = NULL;
+	
+	
+	if(listExistent == NULL)
+		return NULL;
+	
+	else{
+			
+		while(listExistent != NULL){
+		     temp = 	listExistent;
+			 listExistent = listExistent -> suiv;
+			 temp->suiv = NULL;
+			 resultatTrie =  insertTrie(resultatTrie, temp);
+		}
+		return resultatTrie;
+	}
+		
+	
+}
+
 int main(int argc, char **argv)
 {
 	printf("hello world TD 2 Liste Simple\n");
@@ -219,6 +242,16 @@ int main(int argc, char **argv)
 	
 	printf("\nPrint trie: \n");
 	printList(listTrie);
+	
+	
+	//Exo 9:
+	printf("\nBefore Sort\n");
+	
+	printList(myList);
+	
+	printf("\nAfter Sort\n");
+	myList = sortList(myList);
+	printList(myList);
 	
 	return 0;
 }
