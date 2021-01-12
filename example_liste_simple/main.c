@@ -94,6 +94,27 @@ LIST addLast(LIST listExistent, CELL * elementToAdd){
 	
 }
 
+int infList(LIST listExistent){
+   
+	if(listExistent != NULL){
+	     
+		if(listExistent->suiv == NULL)
+			return   listExistent->valeur;
+		else{
+			int valueInf = infList(listExistent->suiv);
+			if( listExistent->valeur < valueInf){
+				  return  listExistent->valeur;
+			}else{
+				return valueInf;
+			}
+			}
+	}
+	else{
+		//Pas de valeur minimal
+		return 100000;
+		}
+}
+
 int main(int argc, char **argv)
 {
 	printf("hello world TD 2 Liste Simple\n");
@@ -138,6 +159,9 @@ int main(int argc, char **argv)
 	myList = addLast(myList, createdCellNeuf);
 	printList(myList);
 	printf("\nTaille list (iterative version): %d\n", countValIter(myList) );
+	
+	int minval = infList(myList);
+	printf("\nMin val: %d\n", minval);
 	
 	return 0;
 }
