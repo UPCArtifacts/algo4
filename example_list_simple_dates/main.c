@@ -25,13 +25,36 @@ DATE* createDate(int jour, int mois, int annee){
 }
 
 
+LIST addFirst(LIST listExistent, DATE * elementToAdd){
+	
+	elementToAdd->suiv = listExistent;
+	listExistent = elementToAdd;
+	return listExistent;
+	
+}
+
+void printList(LIST listToPrint){
+//recursive
+  if(listToPrint != NULL){
+	  printf("date: %d / %d / %d\n", listToPrint->jour, listToPrint->mois, listToPrint -> annee);
+	   printList(listToPrint->suiv);
+	  }	
+
+}
 
 int main(int argc, char **argv)
 {
 	printf("TD 2: Exo 2\n");
 	
 	DATE* dateToday = createDate(15, 1, 2021);
+	DATE* dateHier= createDate(14, 1, 2021);
 	
 	printf("date: %d / %d / %d", dateToday->jour, dateToday->mois, dateToday -> annee);
+	LIST allDate;
+	
+	allDate = addFirst(allDate, dateToday);
+	allDate = addFirst(allDate, dateHier);
+	printf("\n created list: \n");
+	printList(allDate);
 	return 0;
 }
