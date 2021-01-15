@@ -42,6 +42,23 @@ void printList(LIST listToPrint){
 
 }
 
+int nbValMoisAnnee(LIST currentElement, int m, int a){
+   
+  if(currentElement != NULL){
+	  
+	  int resultsSuivant = nbValMoisAnnee(currentElement->suiv, m, a);
+	  if(currentElement-> mois == m && currentElement -> annee == a){
+		     return 1 + resultsSuivant;
+	  }else{
+		    return resultsSuivant;
+		  }
+	  
+	}else{
+		return 0;
+		}	
+
+}
+
 int main(int argc, char **argv)
 {
 	printf("TD 2: Exo 2\n");
@@ -56,5 +73,11 @@ int main(int argc, char **argv)
 	allDate = addFirst(allDate, dateHier);
 	printf("\n created list: \n");
 	printList(allDate);
+	
+	// Exo 6 
+	int moisToQuery = 1;
+	int anneeToQuery = 2021;
+	int nrElements = nbValMoisAnnee(allDate ,moisToQuery, anneeToQuery );
+	printf("\nnr of dates %d \n", nrElements);
 	return 0;
 }
