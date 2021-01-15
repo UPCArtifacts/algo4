@@ -42,6 +42,18 @@ void printList(LIST listToPrint){
 
 }
 
+void printListFilterAnne(LIST listToPrint, int annee){
+//recursive
+  if(listToPrint != NULL){
+	  if (listToPrint -> annee == annee){
+				printf("date: %d / %d / %d\n", listToPrint->jour, listToPrint->mois, listToPrint -> annee);
+	     }
+	   printListFilterAnne(listToPrint->suiv, annee);
+	  }	
+
+}
+
+
 int nbValMoisAnnee(LIST currentElement, int m, int a){
    
   if(currentElement != NULL){
@@ -65,12 +77,14 @@ int main(int argc, char **argv)
 	
 	DATE* dateToday = createDate(15, 1, 2021);
 	DATE* dateHier= createDate(14, 1, 2021);
+	DATE* datePast= createDate(14, 1, 1986);
 	
 	printf("date: %d / %d / %d", dateToday->jour, dateToday->mois, dateToday -> annee);
 	LIST allDate;
 	
 	allDate = addFirst(allDate, dateToday);
 	allDate = addFirst(allDate, dateHier);
+	allDate = addFirst(allDate, datePast);
 	printf("\n created list: \n");
 	printList(allDate);
 	
@@ -79,5 +93,12 @@ int main(int argc, char **argv)
 	int anneeToQuery = 2021;
 	int nrElements = nbValMoisAnnee(allDate ,moisToQuery, anneeToQuery );
 	printf("\nnr of dates %d \n", nrElements);
+	
+	printf("Print by year: \n");
+	printListFilterAnne(allDate, 1986);
+	
+		printf("\nPrint by year: \n");
+	printListFilterAnne(allDate, 2021);
+	
 	return 0;
 }
