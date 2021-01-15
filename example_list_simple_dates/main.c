@@ -80,7 +80,8 @@ int estAvant (LIST d1, LIST d2){
 	   if( d1-> annee > d2 -> annee){
 	   return 0;
 	   // idem annees:
-	   else if( d1 -> mois < d2 -> mois){
+	   }else 
+		   if( d1 -> mois < d2 -> mois){
 		   return 1;
 		   } 
 		   else {
@@ -90,11 +91,34 @@ int estAvant (LIST d1, LIST d2){
 					   else{
 						   // TODO: compared jours.
 						   }
-			   }
-	}
-   
+			   }	
+}
+
+LIST supprimeDerniere(LIST listDates){
+	
+		if( listDates != NULL){
+		   //printf("date: %d / %d / %d\n", listDates->jour, listDates->mois, listDates -> annee);
+		
+			if( listDates -> suiv == NULL){
+					//C est le dernier
+				//printf("Found last\n");	
+				free(listDates);
+				return NULL;
+				}
+				else{
+					listDates-> suiv = supprimeDerniere(listDates -> suiv);
+					return listDates;
+					}
+			
+			}
+			else{
+				return NULL;
+			}
+	
+
 	
 }
+
 
 int main(int argc, char **argv)
 {
@@ -125,5 +149,15 @@ int main(int argc, char **argv)
 		printf("\nPrint by year: \n");
 	printListFilterAnne(allDate, 2021);
 	
+	// Exo 8: 
+	int resultComparison = estAvant (dateToday, datePast);
+	printf("\nRemove last\n");
+	//Exo 9: 
+	allDate = supprimeDerniere(allDate);
+	printf("\nPrint list \n");
+	printList(allDate);
+	
 	return 0;
 }
+
+
