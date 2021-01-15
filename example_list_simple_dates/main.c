@@ -139,6 +139,46 @@ LIST supprimeDerniere(LIST listDates){
 	
 }
 
+LIST insertTrie(LIST listExistent, LIST elementToAdd){
+
+	 if(listExistent == NULL){
+		 return elementToAdd;
+		 }
+	else{
+		if(estAvant(elementToAdd, listExistent ) != 0 ){
+			//Pas a la bonne place 
+			 listExistent -> suiv = insertTrie(listExistent->suiv, elementToAdd);
+			 return listExistent;
+			}
+			else{
+			 //Place to insert
+				elementToAdd->suiv = listExistent;
+				listExistent = elementToAdd;
+				return listExistent;
+			}
+	}
+}
+
+
+LIST trier(LIST listExistent){
+		
+	LIST resultatTrie = NULL;
+	LIST temp = NULL;
+	
+	
+	if(listExistent == NULL)
+		return NULL;
+	
+	else{
+			
+		while(listExistent != NULL){
+		     temp = 	listExistent;
+			 listExistent = listExistent -> suiv;
+			 temp->suiv = NULL;
+			 resultatTrie =  insertTrie(resultatTrie, temp);
+		}
+		return resultatTrie;
+	}
 
 int main(int argc, char **argv)
 {
@@ -186,6 +226,8 @@ int main(int argc, char **argv)
 	allDate = supprimeAnnee(allDate, yearToRemove);
 	printList(allDate);
 	
+	//Exo 11
+	//TODO: test.
 	
 	return 0;
 }
