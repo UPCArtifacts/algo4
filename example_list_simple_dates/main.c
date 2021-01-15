@@ -179,6 +179,7 @@ LIST trier(LIST listExistent){
 		}
 		return resultatTrie;
 	}
+}
 
 int main(int argc, char **argv)
 {
