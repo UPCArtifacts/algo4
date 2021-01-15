@@ -71,6 +71,26 @@ int nbValMoisAnnee(LIST currentElement, int m, int a){
 
 }
 
+LIST supprimeAnnee(LIST listToAnalyze, int anneeToRemove){
+	
+	if(listToAnalyze == NULL){
+		return NULL;
+		}
+	else{
+		if (listToAnalyze -> annee == anneeToRemove){
+			 /// je vais retourner l'address de suivant, parce que    listToAnalyze doit etre supprimé
+			return supprimeAnnee(listToAnalyze-> suiv, anneeToRemove);
+			}
+		else{
+			// je vais retourner l adress de listToAnalyze.
+			listToAnalyze ->  suiv = supprimeAnnee(listToAnalyze-> suiv, anneeToRemove);
+			return listToAnalyze ;
+			}
+		}
+	
+}
+
+
 int estAvant (LIST d1, LIST d2){
    // 1 d1 < d2
    
@@ -127,6 +147,7 @@ int main(int argc, char **argv)
 	DATE* dateToday = createDate(15, 1, 2021);
 	DATE* dateHier= createDate(14, 1, 2021);
 	DATE* datePast= createDate(14, 1, 1986);
+	DATE* datePastPast= createDate(14, 1, 1985);
 	
 	printf("date: %d / %d / %d", dateToday->jour, dateToday->mois, dateToday -> annee);
 	LIST allDate;
@@ -134,6 +155,7 @@ int main(int argc, char **argv)
 	allDate = addFirst(allDate, dateToday);
 	allDate = addFirst(allDate, dateHier);
 	allDate = addFirst(allDate, datePast);
+	allDate = addFirst(allDate, datePastPast);
 	printf("\n created list: \n");
 	printList(allDate);
 	
@@ -146,16 +168,24 @@ int main(int argc, char **argv)
 	printf("Print by year: \n");
 	printListFilterAnne(allDate, 1986);
 	
-		printf("\nPrint by year: \n");
+
+	printf("\nPrint by year: \n");
 	printListFilterAnne(allDate, 2021);
 	
 	// Exo 8: 
 	int resultComparison = estAvant (dateToday, datePast);
-	printf("\nRemove last\n");
+	
 	//Exo 9: 
-	allDate = supprimeDerniere(allDate);
-	printf("\nPrint list \n");
+	//printf("\nRemove last\n");
+	//allDate = supprimeDerniere(allDate);
+	//printf("\nPrint list \n");
+	//printList(allDate);
+	//Exo 10:
+	int yearToRemove  = 1986;
+	printf("\nRemove one year %d \n", yearToRemove);
+	allDate = supprimeAnnee(allDate, yearToRemove);
 	printList(allDate);
+	
 	
 	return 0;
 }
