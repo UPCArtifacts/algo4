@@ -71,6 +71,31 @@ int nbValMoisAnnee(LIST currentElement, int m, int a){
 
 }
 
+int estAvant (LIST d1, LIST d2){
+   // 1 d1 < d2
+   
+   if( d1-> annee < d2 -> annee){
+			return 1;
+   } else 
+	   if( d1-> annee > d2 -> annee){
+	   return 0;
+	   // idem annees:
+	   else if( d1 -> mois < d2 -> mois){
+		   return 1;
+		   } 
+		   else {
+				   if( d1 -> mois > d2 -> mois){
+					   return 0;
+					   }
+					   else{
+						   // TODO: compared jours.
+						   }
+			   }
+	}
+   
+	
+}
+
 int main(int argc, char **argv)
 {
 	printf("TD 2: Exo 2\n");
