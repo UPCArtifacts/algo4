@@ -83,39 +83,39 @@ int main(int argc, char **argv)
 	
 	char productName[15];
 	
-	printf("Enter Name of product: \n" );
-	scanf("%s", productName);
-	
-	int quantity = 19;
-	float prixUni = 0.5;
-	Produit * newProduit = createProduit(productName, quantity, prixUni);
-	
-	printf("Enter Name of product 2: \n" );
-	scanf("%s", productName);
-	quantity = 29;
-	prixUni = 3;
-	Produit * newProduit2 = createProduit(productName, quantity, prixUni);
-	
-	
-	printf("Product created with name: %s",newProduit->idP );
-	
-	printf("\nEnd\n");
-	
-	
 	//Exo 2:
-	Stock myStock;
+	Stock monMagasin;
 	//Init  du Stock
-	myStock.debut = NULL;
-	myStock.fin = NULL;
+	monMagasin.debut = NULL;
+	monMagasin.fin = NULL;
 	
-	insertNewProduct(&myStock, newProduit);
+	int nrProductsToAdd;
 	
-	insertNewProduct(&myStock, newProduit2);
+	printf("Enter number  of products to be added: \n" );
+	scanf("%d", &nrProductsToAdd);
+	
+	for (int i=0;i<nrProductsToAdd;i++){
+				printf("\nEnter Name of product nr %d \n",i+1 );
+				scanf("%s", productName);
+				
+				int quantity;
+				printf("Enter Quantity of product nr %d \n",i+1 );
+				scanf("%d", &quantity);
+				
+				float prixUni;
+				printf("Enter Prix of product nr %d \n",i+1 );
+				scanf("%f", &prixUni);
+				
+				Produit * newProduit = createProduit(productName, quantity, prixUni);
+				printf("Product created with name: %s\n",newProduit->idP );
+				insertNewProduct(&monMagasin, newProduit);
+	}
 	
 	//Exo 3
 	printf("Printing stock: \n");
-	printStock(myStock);
+	printStock(monMagasin);
 	
-	
+
+	printf("\nEnd\n");
 	return 0;
 }
