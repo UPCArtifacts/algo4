@@ -74,6 +74,23 @@ void printStock(Stock myStock){
 	
 }
 
+void searchMin(Stock myStock, int qteMin){
+	
+	printf("Searching for products with quantity smaller than %d \n",qteMin );
+	Produit * currentProduct = myStock.debut;
+	int nrProduct = 0;
+	while (currentProduct != NULL){
+		nrProduct++;
+		if( currentProduct->nbP <  qteMin){
+			printf("nrProduct %d:  ID %s  Quantity: %d Prix %f \n", 
+			nrProduct,currentProduct->idP, currentProduct->nbP, currentProduct->PU   );
+		}
+		currentProduct = currentProduct -> suiv;
+		}
+	
+	
+
+}
 
 
 int main(int argc, char **argv)
@@ -111,11 +128,15 @@ int main(int argc, char **argv)
 				insertNewProduct(&monMagasin, newProduit);
 	}
 	
-	//Exo 3
+	//Exo 3 and 4.
 	printf("Printing stock: \n");
 	printStock(monMagasin);
 	
-
+	//Exo 5:
+	int qtMin = 10;
+	
+	searchMin(monMagasin,qtMin);
+	
 	printf("\nEnd\n");
 	return 0;
 }
