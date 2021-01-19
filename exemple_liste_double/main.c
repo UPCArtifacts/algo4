@@ -87,10 +87,50 @@ void searchMin(Stock myStock, int qteMin){
 		}
 		currentProduct = currentProduct -> suiv;
 		}
-	
-	
-
 }
+
+void removeMin(Stock* myStock, int qteMin){
+	
+	printf("Searching for products with quantity smaller than %d \n",qteMin );
+	Produit * currentProduct = myStock->debut;
+	int nrProduct = 0;
+	while (currentProduct != NULL){
+		nrProduct++;
+		if( currentProduct->nbP <  qteMin){
+        	printf("Remove Element nrProduct %d:  ID %s  Quantity: %d Prix %f \n", 
+			nrProduct,currentProduct->idP, currentProduct->nbP, currentProduct->PU   );
+		
+			//Update the pointer `suiv` from the previous element (If any)
+			if(currentProduct->prec != NULL){
+			   	currentProduct->prec-> suiv = 	currentProduct->suiv;
+			}else{
+				//currentProduct is the first element
+					//Update the pointer from Stock
+					myStock-> debut = currentProduct->suiv;
+			}
+			//Update the pointer `prec` from the next element (If any)
+			if(currentProduct->suiv != NULL){
+				currentProduct->suiv-> prec = 	currentProduct->prec;
+			}
+			else{
+				//currentProduct is the last product
+				//Update the pointer from Stock
+				myStock->fin = currentProduct->prec;
+			}
+			// We need to remove `currentProduct`
+			Produit * productToRemove;
+			productToRemove = currentProduct;
+			currentProduct = currentProduct -> suiv;
+			//liberation de la memoire.
+			free(productToRemove);
+		}else{
+			//Keep the product
+			currentProduct = currentProduct -> suiv;
+		}
+		}
+}
+
+
 
 
 int main(int argc, char **argv)
@@ -134,8 +174,17 @@ int main(int argc, char **argv)
 	
 	//Exo 5:
 	int qtMin = 10;
+	//searchMin(monMagasin,qtMin);
 	
-	searchMin(monMagasin,qtMin);
+	printf("\nExtra exo \n");
+	
+	printf("Enter the min quantity by a product \n" );
+	scanf("%d", &qtMin);
+	
+	removeMin(&monMagasin,qtMin);
+	
+	printf("\n Printing stock:  after remove\n");
+	printStock(monMagasin);
 	
 	printf("\nEnd\n");
 	return 0;
