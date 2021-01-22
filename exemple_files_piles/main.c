@@ -66,6 +66,25 @@ int estPleine(PILE p){
 	}
 }
 
+//// depile le sommet de p
+// et le met dans le float pointe par pf si p non vide,
+// renvoie 1 si OK, 0 sinon
+
+int depiler(PILE *p, float * fp){
+	printf("Removing\n");
+	if (estVide(*p))
+		return 0;
+	else{
+		
+	//printf("Removing  %d\n", p->card);
+	*fp = p -> values[p -> card-1];
+	p-> values[p->card-1]= VALUE_NULL;
+	p-> card = p -> card - 1;
+	return 1;
+}
+	
+}
+
 int main(int argc, char **argv)
 {
 	printf("TD 3 Exo 2 Files et piles: \n");
@@ -90,13 +109,24 @@ int main(int argc, char **argv)
 	
 	float firstValue = 0.5;
 	//Put a value 
-	printf("\nAdding a value: \n")
+	printf("\nAdding a value: \n");
 	int firstIn = empiler(&myPile, firstValue);
 	
 	isEmpty = estVide(myPile);
 	
 	printf("is Empty? %d\n", isEmpty);
-
+	
+	float valueRemoved = 0.0;
+	printf("\nRemoving  a value: \n");
+	
+	int resultRemovement = depiler(&myPile, &valueRemoved);
+	printf("\nRemoved value: %f \n",valueRemoved);
+	
+	
+	isEmpty = estVide(myPile);
+	
+    printf("is Empty? %d\n", isEmpty);
+	
 	
 	
 	return 0;
