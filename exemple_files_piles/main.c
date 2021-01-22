@@ -20,6 +20,17 @@ void init(PILE *p){
 		}
 	
 }
+//renvoie 1 si p ne contient rien, 0 sinon
+int estVide(PILE p){
+	
+	if(p.card == 0){
+		return 1;
+	}
+	else{
+			return 0;
+			}
+	
+}
 
 
 int main(int argc, char **argv)
@@ -36,6 +47,9 @@ int main(int argc, char **argv)
 	//myPile is a struct so for this reason we use . to access to its values
 	printf("Size of pile: %d \n", myPile.card);
 	
+	int isEmpty = estVide(myPile);
+	
+	printf("is Empty? %d", isEmpty);
 	
 	return 0;
 	
