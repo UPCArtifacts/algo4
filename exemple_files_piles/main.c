@@ -84,6 +84,14 @@ int depiler(PILE *p, float * fp){
 }
 	
 }
+// / affiche la valeur de sommet de p sans la depiler si p non vide,
+// " pile vide" sinon
+void afficheSommet(PILE p){
+	if (!estVide(p)){
+		printf("Somment: %f \n", p.values[p.card-1]);
+		}
+}
+
 
 int main(int argc, char **argv)
 {
@@ -111,6 +119,8 @@ int main(int argc, char **argv)
 	//Put a value 
 	printf("\nAdding a value: \n");
 	int firstIn = empiler(&myPile, firstValue);
+	
+	afficheSommet(myPile);
 	
 	isEmpty = estVide(myPile);
 	
