@@ -50,6 +50,13 @@ void afficherABR(ABR currentNode){
 		}
 	}
 // exo  5
+void afficherABR_Decro(ABR currentNode){
+	if(currentNode != NULL){
+			afficherABR_Decro(currentNode->fd);
+			printf("value %d\n", currentNode -> val);
+			afficherABR_Decro(currentNode->fg);
+		}
+	}
 
 int main(int argc, char **argv)
 {
@@ -66,8 +73,11 @@ int main(int argc, char **argv)
 	a = insertInABR(3, a);
 	a = insertInABR(9, a);
 	a = insertInABR(5, a);
-	printf("printing ABR:\n");
+	printf("printing ABR crois:\n");
 	afficherABR(a);
 	
+	
+	printf("printing ABR decro:\n");
+	afficherABR_Decro(a);
 	return 0;
 }
