@@ -70,6 +70,25 @@ void afficherABR_Decro(ABR currentNode){
 		}
 	}
 
+// Exo 7Ecrire une fonction qui recherche la valeur n 
+//dans a et renvoie 1 si trouvée, 0 sinon
+
+int rechercheABR(ABR currentNode, int valueToSearch){
+		if(currentNode == NULL){
+				return 0;
+		}
+		else{
+			if(currentNode-> val == valueToSearch){
+				return 1;
+			}else if(currentNode-> val > valueToSearch){
+				return rechercheABR(currentNode-> fg, valueToSearch);
+				}else{
+					return rechercheABR(currentNode-> fd, valueToSearch);
+					}
+			}
+}
+
+
 int main(int argc, char **argv)
 {
 	printf("TD 4 ABR: \n");
@@ -95,5 +114,16 @@ int main(int argc, char **argv)
 	printf("Exo 6: print format\n");
 	
 	afficherABR_forme(a, "-");
+	
+	printf("Exo 7: search\n");
+	
+	int valueToSearch = 10;
+	int resultSearch = rechercheABR(a, valueToSearch);
+		printf("Exists value %d: %d\n", valueToSearch, resultSearch);
+		
+	valueToSearch = 5;
+	resultSearch = rechercheABR(a, valueToSearch);
+	printf("Exists value %d: %d\n", valueToSearch, resultSearch);
+	
 	return 0;
 }
