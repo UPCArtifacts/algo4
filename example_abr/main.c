@@ -22,6 +22,20 @@ ABR createNode(int valeur){
 	return newNode;
 	
 }
+//Exo 3
+ABR insert(int value, ABR currentNode){
+	if(currentNode == NULL){
+		return createNode(value);
+	}else{
+		if(currentNode-> val > value){
+			return insert(value, currentNode -> fg);
+			}
+		else{
+			return insert(value, currentNode -> fd);
+		}
+		}
+	
+}
 
 
 int main(int argc, char **argv)
