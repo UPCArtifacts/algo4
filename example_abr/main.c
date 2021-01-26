@@ -170,6 +170,30 @@ int hauteur(ABR currentNode){
 	}
 }
 
+int supp_max(ABR * a)
+{	int res;
+	if ((*a)->fd == NULL) // pas de fils droit max trouvé
+	{	res = (*a)->val; 
+		*a = (*a)->fg;
+	} else	res = supp_max(&((*a)->fd)); // on descend à droite
+	return res ;
+}
+
+ABR suppression(int elementToRemove, ABR a)
+{  if (a)
+	{ if (elementToRemove < a->val) 
+		a->fg = suppression(elementToRemove, a->fg);
+	else if (elementToRemove > a->val)	
+			  a->fd = suppression(elementToRemove, a->fd);
+    		else   // elementToRemove == val(a)
+  				if (a->fg == NULL) a = a->fd;
+  				else	if (a->fd == NULL) a = a->fg;
+ 					else a->val = supp_max(&(a->fg));
+	}
+  return a;		
+}
+
+
 int main(int argc, char **argv)
 {
 	printf("TD 4 ABR: \n");
@@ -241,6 +265,19 @@ int main(int argc, char **argv)
 	//
 	int h = hauteur(a);
 	printf("Hauteur %d\n", h);
+	
+	int elementToRemove = 3;
+	printf("Removing\n");
+	printf("Before removing\n");
+	afficherABR_forme(a, "");
+	a = suppression(elementToRemove, a);
+	printf("After removing %d\n", elementToRemove);
+	afficherABR_forme(a, "");
+	
+	elementToRemove = 8;
+	a = suppression(elementToRemove, a);
+	printf("After removing %d\n", elementToRemove);
+	afficherABR_forme(a, "");
 	
 	return 0;
 }
