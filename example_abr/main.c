@@ -153,6 +153,22 @@ float computeMoyenne(ABR currentNode){
 	
 	return sumTotal / nombreTotal;
 }
+//Exo 12
+int hauteur(ABR currentNode){
+	if(currentNode == NULL)
+		return 0;
+	else{
+			int hauteurG = hauteur(currentNode -> fg);
+			int hauteurD = hauteur(currentNode -> fd);
+			
+			if( hauteurG > hauteurD)
+				return 1 + hauteurG;
+			else{
+				return 1 + hauteurD;
+				}
+			
+	}
+}
 
 int main(int argc, char **argv)
 {
@@ -222,7 +238,9 @@ int main(int argc, char **argv)
 	resultSearch = rechercheABRLevel(a, valueToSearch, initialLevel);
 	printf("Exists value %d: %d\n", valueToSearch, resultSearch);
 	
-	
+	//
+	int h = hauteur(a);
+	printf("Hauteur %d\n", h);
 	
 	return 0;
 }
