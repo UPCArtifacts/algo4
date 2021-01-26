@@ -100,7 +100,30 @@ NOEUD* searchPlusPetit(ABR currentNode){
 		return searchPlusPetit(currentNode -> fg);
 		}
 }
+//Ecrire une fonction qui renvoie la somme et le nombre 
+//de valeurs contenues dans a.
 
+void computeMetrics(ABR currentNode, int * sum, int * nombre){
+	
+	if (currentNode == NULL){
+		*sum = 0;
+		*nombre = 0;
+	}else{
+			int sumG = 0;
+			int nombreG = 0;
+			computeMetrics(currentNode -> fg, &sumG, &nombreG);
+			
+			int sumD = 0;
+			int nombreD = 0;
+			
+			computeMetrics(currentNode -> fd, &sumD, &nombreD);
+			
+			//Summary of results 
+			*sum = sumG + sumD + currentNode -> val;
+			*nombre = nombreG + nombreD + 1;
+	}
+	
+}
 
 int main(int argc, char **argv)
 {
@@ -146,6 +169,16 @@ int main(int argc, char **argv)
 	}else{
 		printf("No value on ABR");
 	}
+	
+	printf("exo 9\n");
+	
+	int sumTotal = 0;
+	int nombreTotal = 0;
+	
+	computeMetrics(a, &sumTotal, &nombreTotal);
+	printf("sum %d , nombre %d\n", sumTotal, nombreTotal);
+	
+	
 	
 	return 0;
 }
