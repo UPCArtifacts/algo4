@@ -50,7 +50,7 @@ void afficherABR(ABR currentNode){
 			afficherABR(currentNode->fd);
 		}
 	}
-	
+// t as the '-' from the previous levels.
 void afficherABR_forme(ABR currentNode, char * t){
 	if(currentNode != NULL){
 			char  tnew [20] = "-";
@@ -87,6 +87,23 @@ int rechercheABR(ABR currentNode, int valueToSearch){
 					}
 			}
 }
+
+int rechercheABRLevel(ABR currentNode, int valueToSearch, int level){
+		if(currentNode == NULL){
+				return 0;
+		}
+		else{
+			if(currentNode-> val == valueToSearch){
+				printf("Value %d Found at level %d\n", valueToSearch, level);
+				return 1;
+			}else if(currentNode-> val > valueToSearch){
+				return rechercheABRLevel(currentNode-> fg, valueToSearch, level + 1 );
+				}else{
+					return rechercheABRLevel(currentNode-> fd, valueToSearch, level + 1);
+					}
+			}
+}
+
 
 NOEUD* searchPlusPetit(ABR currentNode){
 	if(currentNode == NULL){
@@ -161,7 +178,7 @@ int main(int argc, char **argv)
 	
 	printf("Exo 6: print format\n");
 	
-	afficherABR_forme(a, "-");
+	afficherABR_forme(a, "");
 	
 	printf("Exo 7: search\n");
 	
@@ -192,6 +209,20 @@ int main(int argc, char **argv)
 	
 	float moy = computeMoyenne(a);
 	printf("Moyenne %f\n", moy);
+	
+	//Exo 11:
+	valueToSearch = 5;
+	int initialLevel = 0;
+	resultSearch = rechercheABRLevel(a, valueToSearch, initialLevel);
+	printf("Exists value %d: %d\n", valueToSearch, resultSearch);
+	
+	
+	valueToSearch = 2;
+	initialLevel = 0;
+	resultSearch = rechercheABRLevel(a, valueToSearch, initialLevel);
+	printf("Exists value %d: %d\n", valueToSearch, resultSearch);
+	
+	
 	
 	return 0;
 }
