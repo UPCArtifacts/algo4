@@ -125,6 +125,18 @@ void computeMetrics(ABR currentNode, int * sum, int * nombre){
 	
 }
 
+//Ecrire une fonction qui renvoie la moyenne des valeurs contenues dans a
+
+float computeMoyenne(ABR currentNode){
+	
+	int sumTotal = 0;
+	int nombreTotal = 0;
+	
+	computeMetrics(currentNode, &sumTotal, &nombreTotal);
+	
+	return sumTotal / nombreTotal;
+}
+
 int main(int argc, char **argv)
 {
 	printf("TD 4 ABR: \n");
@@ -178,7 +190,8 @@ int main(int argc, char **argv)
 	computeMetrics(a, &sumTotal, &nombreTotal);
 	printf("sum %d , nombre %d\n", sumTotal, nombreTotal);
 	
-	
+	float moy = computeMoyenne(a);
+	printf("Moyenne %f\n", moy);
 	
 	return 0;
 }
