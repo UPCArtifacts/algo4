@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 
 typedef struct _noeud
 {      int val ; // valeur stockee
@@ -49,6 +50,17 @@ void afficherABR(ABR currentNode){
 			afficherABR(currentNode->fd);
 		}
 	}
+	
+void afficherABR_forme(ABR currentNode, char * t){
+	if(currentNode != NULL){
+			char  tnew [20] = "-";
+			strcat(tnew, t);
+			afficherABR_forme(currentNode->fg, tnew);
+			printf("%s %d\n", t, currentNode -> val);
+			afficherABR_forme(currentNode->fd, tnew);
+		}
+	}
+	
 // exo  5
 void afficherABR_Decro(ABR currentNode){
 	if(currentNode != NULL){
@@ -73,11 +85,15 @@ int main(int argc, char **argv)
 	a = insertInABR(3, a);
 	a = insertInABR(9, a);
 	a = insertInABR(5, a);
-	printf("printing ABR crois:\n");
+	printf("Exo 4: printing ABR crois:\n");
 	afficherABR(a);
 	
 	
-	printf("printing ABR decro:\n");
+	printf("Exo 5: printing ABR decro:\n");
 	afficherABR_Decro(a);
+	
+	printf("Exo 6: print format\n");
+	
+	afficherABR_forme(a, "-");
 	return 0;
 }
