@@ -88,6 +88,19 @@ int rechercheABR(ABR currentNode, int valueToSearch){
 			}
 }
 
+NOEUD* searchPlusPetit(ABR currentNode){
+	if(currentNode == NULL){
+		return NULL;
+	}
+	
+	if(currentNode -> fg == NULL){
+		return currentNode;
+		}
+	else{
+		return searchPlusPetit(currentNode -> fg);
+		}
+}
+
 
 int main(int argc, char **argv)
 {
@@ -124,6 +137,15 @@ int main(int argc, char **argv)
 	valueToSearch = 5;
 	resultSearch = rechercheABR(a, valueToSearch);
 	printf("Exists value %d: %d\n", valueToSearch, resultSearch);
+	
+	printf("Exo 8: search min\n");
+	
+	NOEUD* pPetit = searchPlusPetit(a);
+	if (pPetit != NULL){
+		printf("Value min: %d \n", pPetit->val);
+	}else{
+		printf("No value on ABR");
+	}
 	
 	return 0;
 }
