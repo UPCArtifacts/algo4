@@ -5,7 +5,23 @@ typedef struct _noeud
        struct _noeud *  fg, * fd; // pointeurs vers les noeuds fils 
 } NOEUD, * ABR ;
 
+void exo1(){
+	// Donner le schéma de l’arbre obtenu en insérant la suite de valeurs 
+	//{2,1,8,6,7,3,9,5} dans cet ordre dans l’arbre a.
+	
 
+}
+//Exo 2
+ABR createNode(int valeur){
+	ABR newNode = NULL;
+	
+	newNode = (ABR) malloc(sizeof(struct _noeud));
+	
+	newNode -> val = valeur;
+	
+	return newNode;
+	
+}
 
 
 int main(int argc, char **argv)
