@@ -175,13 +175,34 @@ LIST sortList(LIST listExistent){
 	
 }
 
+//a-> b->c 
+//d at 1
+//a-> d -> b ->c
+CELL*  affectPosition(CELL * listExistent, int indexToAdd, int currentIndex, CELL * elementToAdd ){
+	
+	if(listExistent == NULL){
+		//Nothing to add
+		return NULL;
+		}
+	//We found the place to add
+	if(currentIndex == indexToAdd ){
+		elementToAdd-> suiv = listExistent;
+		return elementToAdd;
+
+	}else{
+		listExistent-> suiv = affectPosition(listExistent-> suiv, indexToAdd, currentIndex + 1, elementTo);
+		return listExistent;
+	}
+	
+}
+
+
 void printFirst(CELL * listExistent){// LIST listExistent
 	if(listExistent != NULL){
 			printf("First element: %d", listExistent->valeur);
 	}else{
 		printf("List is empty");
 		}
-	
 }
 
 int main(int argc, char **argv)
