@@ -175,6 +175,15 @@ LIST sortList(LIST listExistent){
 	
 }
 
+void printFirst(CELL * listExistent){// LIST listExistent
+	if(listExistent != NULL){
+			printf("First element: %d", listExistent->valeur)
+	}else{
+		printf("List is empty");
+		}
+	
+}
+
 int main(int argc, char **argv)
 {
 	printf("hello world TD 2 Liste Simple\n");

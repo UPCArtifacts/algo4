@@ -92,6 +92,12 @@ void afficheSommet(PILE p){
 		}
 }
 
+void afficheSommetPointer(PILE * p){
+	if (!estVide(*p)){
+		printf("Somment: %f \n", p->values[p->card-1]);
+		}
+}
+
 
 int main(int argc, char **argv)
 {
