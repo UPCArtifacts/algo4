@@ -177,7 +177,7 @@ LIST sortList(LIST listExistent){
 
 void printFirst(CELL * listExistent){// LIST listExistent
 	if(listExistent != NULL){
-			printf("First element: %d", listExistent->valeur)
+			printf("First element: %d", listExistent->valeur);
 	}else{
 		printf("List is empty");
 		}
